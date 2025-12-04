@@ -5,6 +5,8 @@ Vanilla K8s Manager is a lightweight, single-file web tool designed to bootstrap
 
 Built with Python and Streamlit, it simplifies the complex process of setting up kubeadm clusters into a few clicks, offering a unified interface for cluster creation, worker node joining, application deployment, and real-time monitoring.
 
+<img width="836" height="1148" alt="image" src="https://github.com/user-attachments/assets/80b857b6-bf8e-4e6a-8a3e-63f6f5eb737d" />
+
 ✨ Key Features
 
 1. 🛠️ Cluster Bootstrap & Management
