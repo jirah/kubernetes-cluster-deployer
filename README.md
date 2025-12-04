@@ -1,11 +1,8 @@
-# kubernetes-cluster-deployer
 ☸️ Vanilla K8s Manager & Deployer
 
-Vanilla K8s Manager is a lightweight, single-file web tool designed to bootstrap, manage, and monitor "Vanilla" Kubernetes clusters on bare-metal servers or VMs.
+Vanilla K8s Manager is a lightweight, single-file GUI tool designed to bootstrap, manage, and monitor "Vanilla" Kubernetes clusters on bare-metal servers or VMs.
 
-Built with Python and Streamlit, it simplifies the complex process of setting up kubeadm clusters into a few clicks, offering a unified interface for cluster creation, worker node joining, application deployment, and real-time monitoring.
-
-<img width="836" height="1148" alt="image" src="https://github.com/user-attachments/assets/80b857b6-bf8e-4e6a-8a3e-63f6f5eb737d" />
+Built with Python and Streamlit, it simplifies the complex process of setting up kubeadm clusters into a few clicks, offering a unified interface for cluster creation, worker node joining, GitOps-based application deployment, and real-time monitoring.
 
 ✨ Key Features
 
@@ -13,31 +10,35 @@ Built with Python and Streamlit, it simplifies the complex process of setting up
 
 Automated Master Setup: One-click installation of Kubernetes Control Plane components (kubeadm, kubelet, kubectl, containerd, flannel CNI) on a fresh Linux VM.
 
-Smart OS Detection: Automatically detects and adapts to Debian/Ubuntu (apt), RHEL/Rocky/CentOS (dnf), and SUSE (zypper).
+Smart OS Detection: Automatically detects and adapts to Debian/Ubuntu (apt), RHEL/Rocky/CentOS (dnf), and SUSE (zypper). Includes specific fixes for Debian Trixie/Sid.
 
-Worker Node Onboarding: Generates ready-to-use Cloud-Init (user-data.yaml) and Bash (worker-setup.sh) scripts to join worker nodes to the cluster easily.
+Worker Node Onboarding: Generates ready-to-use Cloud-Init (user-data.yaml) and Bash (worker-setup.sh) scripts to easily join worker nodes to the cluster.
 
-Live Node Status: View real-time status of all nodes in the cluster, including hardware specs (CPU/RAM) and kernel versions.
+Live Node Status: View real-time status of all nodes, including hardware specs (CPU/RAM formatted in GiB) and kernel versions.
 
-2. 🚀 Application Deployment
+Node Management: Ability to detach worker nodes directly from the UI.
 
-Streamlined Deployer: Deploy containerized applications (Deployment + Service) in seconds.
+2. 🛍️ Marketplace & GitOps
 
-Infrastructure Targeting: Use Node Affinity to pin specific workloads to specific VMs/Nodes via a visual multi-select interface.
+One-Click App Store: Instantly deploy complex Data & Analytics stacks using FluxCD.
 
-Workload Dashboard: View running deployments, replica counts, and image versions.
+Supported Apps: Apache Kafka, Apache NiFi, Trino (SQL), JupyterHub, Apache Airflow, Kouncil (Kafka UI).
 
-Lifecycle Management: Delete applications and services directly from the UI.
+Dependency Awareness: Ensures prerequisites (e.g., Kafka for Kouncil) are met before installation.
+
+Smart Access: Automatically discovers assigned NodePorts and generates direct clickable links (http://<PublicIP>:<Port>) to access application UIs.
+
+GitOps Dashboard: Manage FluxCD Git Sources and Kustomizations directly. Connect your own Git repositories to drive cluster state.
 
 3. 📊 Monitoring & Observability
 
-One-Click Metrics: Automatically installs and patches the Kubernetes Metrics Server for vanilla clusters.
+One-Click Observability: Automatically installs and patches the Kubernetes Metrics Server for vanilla clusters (insecure TLS support included).
+
+Cluster Capacity: View total aggregated CPU and RAM capacity vs. utilization.
 
 Real-Time Graphs: Visualizes CPU and Memory usage per node with Grafana-style area charts.
 
 Network Stats: Monitors the Master Node's network throughput in real-time.
-
-Live Terminal: Watch installation logs stream in real-time within the browser.
 
 💻 System Requirements
 
@@ -72,7 +73,6 @@ sudo apt update && sudo apt install -y python3-venv python3-pip git
 sudo dnf install -y python3 git
 
 
-
 2. Setup Project & Environment
 
 Clone the repository (or copy the deployer.py file) and set up the environment.
@@ -88,13 +88,11 @@ python3 -m venv venv
 source venv/bin/activate
 
 
-
 3. Install Dependencies
 
 Install the required Python libraries inside the virtual environment.
 
 pip install streamlit kubernetes psutil pyyaml
-
 
 
 4. Run the Application
@@ -103,7 +101,6 @@ Because the tool needs to install system packages (like kubeadm and containerd) 
 
 # The path to streamlit inside the venv is usually needed when using sudo
 sudo ./venv/bin/streamlit run deployer.py --server.address 0.0.0.0 --server.port 8501
-
 
 
 Note: The --server.address 0.0.0.0 flag ensures the app is accessible from your browser if you are running this on a remote VM.
