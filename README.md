@@ -1,7 +1,7 @@
 # kubernetes-cluster-deployer
 ☸️ Vanilla K8s Manager & Deployer
 
-Vanilla K8s Manager is a lightweight, single-file GUI tool designed to bootstrap, manage, and monitor "Vanilla" Kubernetes clusters on bare-metal servers or VMs.
+Vanilla K8s Manager is a lightweight, single-file web tool designed to bootstrap, manage, and monitor "Vanilla" Kubernetes clusters on bare-metal servers or VMs.
 
 Built with Python and Streamlit, it simplifies the complex process of setting up kubeadm clusters into a few clicks, offering a unified interface for cluster creation, worker node joining, application deployment, and real-time monitoring.
 
@@ -13,7 +13,7 @@ Automated Master Setup: One-click installation of Kubernetes Control Plane compo
 
 Smart OS Detection: Automatically detects and adapts to Debian/Ubuntu (apt), RHEL/Rocky/CentOS (dnf), and SUSE (zypper).
 
-Worker Node Onboarding: Generates ready-to-use Cloud-Init (user-data.yaml) and Bash (worker-setup.sh) scripts to easily join worker nodes to the cluster.
+Worker Node Onboarding: Generates ready-to-use Cloud-Init (user-data.yaml) and Bash (worker-setup.sh) scripts to join worker nodes to the cluster easily.
 
 Live Node Status: View real-time status of all nodes in the cluster, including hardware specs (CPU/RAM) and kernel versions.
 
